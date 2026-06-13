@@ -20,13 +20,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Sticky Navbar on Scroll
   const navbar = document.querySelector('.navbar');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-      navbar.classList.add('scrolled');
+  const handleScroll = () => {
+    if (window.scrollY > 50 || (navbar && navbar.classList.contains('compro-nav'))) {
+      if (navbar) navbar.classList.add('scrolled');
     } else {
-      navbar.classList.remove('scrolled');
+      if (navbar) navbar.classList.remove('scrolled');
     }
-  });
+  };
+  window.addEventListener('scroll', handleScroll);
+  handleScroll(); // Initialize state on load
 
   // Intersection Observer for Reveal Animations
   const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
@@ -212,6 +214,77 @@ document.addEventListener('DOMContentLoaded', () => {
         applyForm.style.display = 'none';
         if (successMsg) {
           successMsg.style.display = 'block';
+        }
+      }
+    });
+  }
+
+  // Legal Document Access Modal Logic
+  const legalModal = document.getElementById('legalAccessModal');
+  const legalClose = document.getElementById('legalAccessClose');
+  const legalCloseBtn = document.getElementById('legalAccessCloseBtn');
+  const legalForm = document.getElementById('legalAccessForm');
+  const legalSuccessMsg = document.getElementById('legalAccessSuccessMsg');
+  const legalDocInput = document.getElementById('legalDocType');
+
+  // Open legal modal buttons
+  document.body.addEventListener('click', (e) => {
+    if (e.target.classList.contains('open-legal-modal') || e.target.closest('.open-legal-modal')) {
+      const btn = e.target.classList.contains('open-legal-modal') ? e.target : e.target.closest('.open-legal-modal');
+      const docName = btn.getAttribute('data-doc') || 'Dokumen Resmi';
+      
+      if (legalDocInput) {
+        legalDocInput.value = docName;
+      }
+      
+      if (legalModal) {
+        legalModal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // prevent scrolling
+      }
+    }
+  });
+
+  const closeLegalModal = () => {
+    if (legalModal) {
+      legalModal.classList.remove('active');
+      document.body.style.overflow = '';
+      setTimeout(() => {
+        if (legalForm && legalSuccessMsg) {
+          legalForm.style.display = 'block';
+          legalSuccessMsg.style.display = 'none';
+          legalForm.reset();
+        }
+      }, 300);
+    }
+  };
+
+  if (legalClose) {
+    legalClose.addEventListener('click', closeLegalModal);
+  }
+  if (legalCloseBtn) {
+    legalCloseBtn.addEventListener('click', closeLegalModal);
+  }
+
+  if (legalModal) {
+    legalModal.addEventListener('click', (e) => {
+      if (e.target === legalModal) {
+        closeLegalModal();
+      }
+    });
+  }
+
+  if (legalForm) {
+    legalForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const name = document.getElementById('legalName').value.trim();
+      const email = document.getElementById('legalEmail').value.trim();
+      const org = document.getElementById('legalOrg').value.trim();
+      
+      if (name && email && org) {
+        legalForm.style.display = 'none';
+        if (legalSuccessMsg) {
+          legalSuccessMsg.style.display = 'block';
         }
       }
     });
