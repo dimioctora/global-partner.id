@@ -5,8 +5,8 @@ const payrollDatabase = {
   "GPS-091218": {
     id: "GPS-091218",
     name: "M. VIVALDY KINSKY",
-    position: "Komisaris",
-    status: "Direksi",
+    position: "Manager Operasional",
+    status: "Pegawai Tetap",
     period: "May 2026",
     earnings: {
       basic: 45000000,
