@@ -32,7 +32,7 @@ const payrollDatabase = {
   "GPS-040620": {
     id: "GPS-040620",
     name: "DRA IRA PRAMESWARI",
-    position: "Direktur Utama",
+    position: "General Manager",
     status: "Direksi",
     period: "May 2026",
     earnings: {
@@ -113,7 +113,7 @@ const payrollDatabase = {
   "GPS-070221": {
     id: "GPS-070221",
     name: "HERU SUTIARSO",
-    position: "Direktur Operasional",
+    position: "Senior Manager",
     status: "Pegawai Tetap",
     period: "May 2026",
     earnings: {
@@ -140,7 +140,7 @@ const payrollDatabase = {
   "GPS-090723": {
     id: "GPS-090723",
     name: "ANA MARIA INRIYANI REYAAN",
-    position: "Direktur Keuangan",
+    position: "General Affairs",
     status: "Direksi",
     period: "May 2026",
     earnings: {
