@@ -7,7 +7,7 @@ const payrollDatabase = {
     name: "M. VIVALDY KINSKY",
     position: "Manager Operasional",
     status: "Pegawai Tetap",
-    period: "May 2026",
+    period: "June 2026",
     earnings: {
       basic: 45000000,
       allowance: 10000000,
@@ -34,7 +34,7 @@ const payrollDatabase = {
     name: "DRA IRA PRAMESWARI",
     position: "General Manager",
     status: "Direksi",
-    period: "May 2026",
+    period: "June 2026",
     earnings: {
       basic: 45000000,
       allowance: 10000000,
@@ -61,7 +61,7 @@ const payrollDatabase = {
     name: "CHIKA SHAKIRA KAMILYANA",
     position: "Manager",
     status: "Pegawai Tetap",
-    period: "May 2026",
+    period: "June 2026",
     earnings: {
       basic: 12500000,
       allowance: 3250000,
@@ -88,7 +88,7 @@ const payrollDatabase = {
     name: "CHIKA SHAKIRA KAMILYANA",
     position: "Manager",
     status: "Pegawai Tetap",
-    period: "May 2026",
+    period: "June 2026",
     earnings: {
       basic: 12500000,
       allowance: 3250000,
@@ -115,7 +115,7 @@ const payrollDatabase = {
     name: "HERU SUTIARSO",
     position: "Senior Manager",
     status: "Pegawai Tetap",
-    period: "May 2026",
+    period: "June 2026",
     earnings: {
       basic: 40000000,
       allowance: 6000000,
@@ -142,7 +142,7 @@ const payrollDatabase = {
     name: "ANA MARIA INRIYANI REYAAN",
     position: "General Affairs",
     status: "Direksi",
-    period: "May 2026",
+    period: "June 2026",
     earnings: {
       basic: 35750000,
       allowance: 6000000,
@@ -169,7 +169,7 @@ const payrollDatabase = {
     name: "ADITYA PURNAMA",
     position: "Wakil Direktur Operasional",
     status: "Pegawai Tetap",
-    period: "May 2026",
+    period: "June 2026",
     earnings: {
       basic: 18500000,
       allowance: 4250000,
@@ -196,7 +196,7 @@ const payrollDatabase = {
     name: "MODISTO FAROLAND",
     position: "Wakil Direktur",
     status: "Pegawai Tetap",
-    period: "May 2026",
+    period: "June 2026",
     earnings: {
       basic: 20000000,
       allowance: 5000000,
