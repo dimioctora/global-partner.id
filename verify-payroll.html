@@ -840,15 +840,47 @@
       // 1. Get query parameters
       const urlParams = new URLSearchParams(window.location.search);
       const payrollId = urlParams.get('id');
+      let payrollPeriod = urlParams.get('period');
 
       const statusBanner = document.getElementById('statusBanner');
       const payslipContainer = document.getElementById('payslipContainer');
       const errorContainer = document.getElementById('errorContainer');
       const actionsContainer = document.getElementById('actionsContainer');
 
-      // Check if payroll ID exists in database
+      let record = null;
       if (payrollId && payrollDatabase[payrollId]) {
-        const record = payrollDatabase[payrollId];
+        const empData = payrollDatabase[payrollId];
+        if (empData.id) {
+          // Direct record (flat structure)
+          record = empData;
+        } else {
+          // Nested structure by period
+          if (payrollPeriod) {
+            const periodMap = {
+              "juli 2026": "July 2026",
+              "july 2026": "July 2026",
+              "agustus 2026": "August 2026",
+              "august 2026": "August 2026",
+              "juni 2026": "June 2026",
+              "june 2026": "June 2026",
+              "mei 2026": "May 2026",
+              "may 2026": "May 2026",
+              "april 2026": "April 2026"
+            };
+            const normPeriod = periodMap[payrollPeriod.trim().toLowerCase()] || payrollPeriod;
+            record = empData[payrollPeriod] || empData[normPeriod];
+          }
+          if (!record) {
+            const periods = Object.keys(empData);
+            if (periods.length > 0) {
+              record = empData[periods[periods.length - 1]];
+            }
+          }
+        }
+      }
+
+      // Check if payroll record was found
+      if (record) {
 
         // 2. Populate metadata
         document.getElementById('slipIdText').textContent = record.id;
