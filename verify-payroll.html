@@ -856,7 +856,16 @@
         } else {
           // Nested structure by period
           if (payrollPeriod) {
-            const cleanPeriod = payrollPeriod.trim().toLowerCase();
+            let cleanPeriod = payrollPeriod.trim().toLowerCase();
+
+            // If period is an Excel 5-digit serial date number (e.g. 46263 for August 2026)
+            if (/^\d{5}$/.test(cleanPeriod)) {
+              const serial = parseInt(cleanPeriod, 10);
+              const jsDate = new Date((serial - 25569) * 86400 * 1000);
+              const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+              cleanPeriod = (months[jsDate.getUTCMonth()] + " " + jsDate.getUTCFullYear()).toLowerCase();
+            }
+
             const periodMap = {
               "juni 2026": "June 2026",
               "june 2026": "June 2026",
@@ -875,7 +884,7 @@
               "april 2026": "April 2026"
             };
             const normPeriod = periodMap[cleanPeriod] || payrollPeriod;
-            record = empData[payrollPeriod] || empData[normPeriod];
+            record = empData[payrollPeriod] || empData[normPeriod] || empData[periodMap[payrollPeriod.trim().toLowerCase()]];
           }
 
           // If no period query parameter is present (as encoded in standard June QR codes),
