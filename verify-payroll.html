@@ -856,25 +856,32 @@
         } else {
           // Nested structure by period
           if (payrollPeriod) {
+            const cleanPeriod = payrollPeriod.trim().toLowerCase();
             const periodMap = {
-              "juli 2026": "July 2026",
-              "july 2026": "July 2026",
-              "agustus 2026": "August 2026",
-              "august 2026": "August 2026",
               "juni 2026": "June 2026",
               "june 2026": "June 2026",
+              "juni": "June 2026",
+              "june": "June 2026",
+              "juli 2026": "July 2026",
+              "july 2026": "July 2026",
+              "juli": "July 2026",
+              "july": "July 2026",
+              "agustus 2026": "August 2026",
+              "august 2026": "August 2026",
+              "agustus": "August 2026",
+              "august": "August 2026",
               "mei 2026": "May 2026",
               "may 2026": "May 2026",
               "april 2026": "April 2026"
             };
-            const normPeriod = periodMap[payrollPeriod.trim().toLowerCase()] || payrollPeriod;
+            const normPeriod = periodMap[cleanPeriod] || payrollPeriod;
             record = empData[payrollPeriod] || empData[normPeriod];
           }
+
+          // If no period query parameter is present (as encoded in standard June QR codes),
+          // or period parameter could not be matched directly, default to June 2026
           if (!record) {
-            const periods = Object.keys(empData);
-            if (periods.length > 0) {
-              record = empData[periods[periods.length - 1]];
-            }
+            record = empData["June 2026"] || empData["Juni 2026"] || empData[Object.keys(empData)[0]];
           }
         }
       }
